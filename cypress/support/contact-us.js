@@ -28,4 +28,10 @@ Cypress.Commands.add('ProductInfo', (item) => {
 Cypress.Commands.add('ExistBe', (item) => { 
   cy.get(item).should("be.exist");
 })
+Cypress.Commands.add('verifyProductExists', (n) => {
+  cy.get('a[href="/product_details/' + n + '"]').should("exist")
+})
+Cypress.Commands.add('verifyProductDoesntExist', (n) => {
+  cy.get('a[href="/product_details/' + n + '"]').should("not.exist")
+})
  

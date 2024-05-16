@@ -40,7 +40,6 @@ class sauceDemo
         cy.get('[data-qa="cvc"]').type("212")
         cy.get('[data-qa="expiry-month"]').type("07")
         cy.get('[data-qa="expiry-year"]').type("2022")
-      
     }
     KidsFilter(){
         cy.ButtonClick('a[href="#Kids"]')
@@ -56,9 +55,10 @@ class sauceDemo
         cy.get("#search_product").clear()
         cy.ButtonClick("#submit_search")
     }    
-    PoloFilter(){
-        cy.ButtonClick('a[href="/brand_products/Polo"]')
-        cy.EqUrl("https://automationexercise.com/brand_products/Polo")
+    brandFilter(brand){
+        cy.ButtonClick('a[href="/brand_products/' + brand + '"]')
+        brand = brand.replace(/\s/g, "%20")
+        cy.EqUrl("https://automationexercise.com/brand_products/" + brand)
     }
     AddingProductToCart(){
         cy.ButtonClick('a[href="/product_details/1"]')

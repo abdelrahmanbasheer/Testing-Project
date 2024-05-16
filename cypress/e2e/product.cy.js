@@ -102,7 +102,7 @@ describe('SauceDemo', () => {
       assert(text.length == 0, "only valid emails should work")
     })
   });
-  it.only('[31] add review on products with valid data', () => {
+  it('[31] add review on products with valid data', () => {
     nav.homePage()
     nav.ProductsPage()
     nav.nthProductPage(6)
