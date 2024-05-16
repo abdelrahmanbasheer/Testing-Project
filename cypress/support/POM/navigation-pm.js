@@ -3,8 +3,14 @@ class Navigation
     loginPageNav(){
         cy.visit("https://automationexercise.com/login")
     }
+    logoutPageNav(){
+        cy.visit("https://automationexercise.com/logout")
+    }
     homePage(){
         cy.visit("https://automationexercise.com")
+    }
+    cartPage(){
+        cy.visit("https://automationexercise.com/view_cart")
     }
     FirstProductPage(){
         cy.ButtonClick('a[href="/product_details/1"]')
@@ -37,6 +43,10 @@ class Navigation
     logoutPage(){
         cy.get('a[href="/logout"]').click()
         cy.url().should('eq',"https://automationexercise.com/login")
+    }
+    videosPage(){
+        cy.get('a[href="https://www.youtube.com/c/AutomationExercise"]').click()
+        cy.url().should('eq',"https://www.youtube.com/c/AutomationExercise")
     }
 }
 export default Navigation

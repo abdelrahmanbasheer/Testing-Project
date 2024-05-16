@@ -1,9 +1,17 @@
 class sauceDemo
 {
-    validLogin(){
-        cy.loginEmail("abdelrahmanbasheer72@gmail.com")
-        cy.loginPswd("123456")
+    login(email, password){
+        cy.loginEmail(email)
+        cy.loginPswd(password)
         cy.loginBtn()
+    }
+    signup(name, email){
+        cy.SignupName(name)
+        cy.SignupEmail(email)
+        cy.SignupBtn()
+    }
+    validLogin(){
+        this.login("abdelrahmanbasheer72@gmail.com", "123456")
         cy.EqUrl("https://automationexercise.com/")
     }
     FillContactUsForm(){
@@ -14,7 +22,7 @@ class sauceDemo
     FillSubscribtionForm(){
         cy.get('#susbscribe_email').type("asdsd@gmail.com")
         cy.get('#subscribe').click()
-       cy.get("#success-subscribe").should("be.exist")
+        cy.get("#success-subscribe").should("be.exist")
     }
     WomenFilter(){
         cy.ButtonClick('a[href="#Women"]')
@@ -23,7 +31,7 @@ class sauceDemo
     }
     MenFilter(){
         cy.ButtonClick('a[href="#Men"]')
-       cy.ButtonClick('a[href="/category_products/3"]')
+        cy.ButtonClick('a[href="/category_products/3"]')
         cy.EqUrl("https://automationexercise.com/category_products/3")
     }
     CheckoutFormFill(){
@@ -36,7 +44,7 @@ class sauceDemo
     }
     KidsFilter(){
         cy.ButtonClick('a[href="#Kids"]')
-       cy.ButtonClick('a[href="/category_products/4"]')
+        cy.ButtonClick('a[href="/category_products/4"]')
         cy.EqUrl("https://automationexercise.com/category_products/4")
     }
     Search(){
@@ -70,14 +78,12 @@ class sauceDemo
         cy.ButtonClick('.col-sm-6 > .btn')
         cy.get('.modal-content').should("contain.text","Register / Login account to proceed on checkout.")
     }
-    validSignup(){
-        cy.SignupEmail()
-        cy.SignupName()
-        cy.SignupBtn()
+    validSignup(email = Math.floor(Math.random() * 1000000000) + "@gmail.com"){
+        this.signup("abdelrahman", email)
         cy.EqUrl("https://automationexercise.com/signup")
         cy.get('#id_gender1').check();
-        cy.get('[data-qa="name"]').should("have.value","abdelrahman")
-        cy.get('[data-qa="email"]').should("have.value","abdelrahmanbasheer72@gmail.com")
+        cy.get('[data-qa="name"]').should("have.value", "abdelrahman")
+        cy.get('[data-qa="email"]').should("have.value", email)
         cy.get('#days').should('have.length.at.least', 1)
         cy.get('#days').select('1')
         cy.get('#months').select("1")
@@ -93,24 +99,19 @@ class sauceDemo
         cy.get('#mobile_number').type("123456789")
         cy.get('.login-form > form > .btn').click()
         cy.EqUrl('https://automationexercise.com/account_created')
+        return email
     }
     preusedEmailsignup(){
-        cy.SignupName()
-        cy.SignupEmail()
-        cy.SignupBtn()
+        this.signup("abdelrahman", "abdelrahmanbasheer72@gmail.com")
         cy.get('.signup-form > form > p').should("contain.text","Email Address already exist!") 
     }
-    wrongEmailLogin(){
-        cy.loginEmail("abdelrahmanbasheer@gmail.com")
-        cy.loginPswd("12345")
-        cy.loginBtn()
+    wrongLogin(email, password){
+        this.login(email, password)
         cy.get('.login-form > form > p').should("contain.text","Your email or password is incorrect!")  
     }
-    wrongPswdLogin(){
-        cy.loginEmail("abdelrahmanbasheer72@gmail.com")
-        cy.loginPswd("12345")
-        cy.loginBtn()
-        cy.get('.login-form > form > p').should("contain.text","Your email or password is incorrect!")  
+    deleteAccount(){
+        cy.visit("https://automationexercise.com/delete_account")
+        cy.contains("Account Deleted!").should("be.visible");
     }
 }
 export default sauceDemo
