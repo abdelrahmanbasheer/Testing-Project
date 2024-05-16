@@ -37,7 +37,7 @@ describe('SauceDemo', () => {
     Funct.CheckoutFormFill()
     nav.paymentSuccessPage()
   });
-  it('[14] clicking on products and viewing products ', () => {
+  it('[14] clicking on products and viewing products', () => {
     nav.homePage()
     nav.ProductsPage()
   });
@@ -58,6 +58,56 @@ describe('SauceDemo', () => {
     nav.cartPage()
     cy.ExistBe("#empty_cart")
     nav.ViewProductsInsideCartPage()
+  });
+  it('[26] visit products pages', () => {
+    nav.homePage()
+    for (let i = 1; i < 7; ++i) {
+      nav.ProductsPage()
+      nav.nthProductPage(i)
+    }
+  });
+  it('[27] add review on products while leaving username empty', () => {
+    nav.homePage()
+    nav.ProductsPage()
+    nav.nthProductPage(6)
+    Funct.writeReview("", "asda@gm", "dfgfgdf");
+    cy.get("#email").invoke('text').then((text) => {
+      assert(text.length == 0, "empty username should be invalid")
+    })
+  });
+  it('[28] add review on products while leaving email empty', () => {
+    nav.homePage()
+    nav.ProductsPage()
+    nav.nthProductPage(6)
+    Funct.writeReview("sfdsfdf", "", "dfgfgdf");
+    cy.get("#name").invoke('text').then((text) => {
+      assert(text.length == 0, "empty email should be invalid")
+    })
+  });
+  it('[29] add review on products while leaving review empty', () => {
+    nav.homePage()
+    nav.ProductsPage()
+    nav.nthProductPage(6)
+    Funct.writeReview("sfdsfdf", "asda@gm", "");
+    cy.get("#name").invoke('text').then((text) => {
+      assert(text.length == 0, "empty review should be invalid")
+    })
+  });
+  it('[30] add review on products with invalid email', () => {
+    nav.homePage()
+    nav.ProductsPage()
+    nav.nthProductPage(6)
+    Funct.writeReview("sfdsfdf", "asdagm", "");
+    cy.get("#name").invoke('text').then((text) => {
+      assert(text.length == 0, "only valid emails should work")
+    })
+  });
+  it.only('[31] add review on products with valid data', () => {
+    nav.homePage()
+    nav.ProductsPage()
+    nav.nthProductPage(6)
+    Funct.writeReview("sfdsfdf", "asda@gm", "dsfd");
+    cy.contains("Thank you for your review.").should("exist")
   });
 });
 

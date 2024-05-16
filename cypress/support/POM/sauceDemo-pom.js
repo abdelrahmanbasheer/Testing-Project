@@ -113,5 +113,17 @@ class sauceDemo
         cy.visit("https://automationexercise.com/delete_account")
         cy.contains("Account Deleted!").should("be.visible");
     }
+    writeReview(name, email, review){
+        if(name.trim().length > 0){
+            cy.get("#name").type(name)
+        }
+        if(email.trim().length > 0){
+            cy.get("#email").type(email)
+        }
+        if(review.trim().length > 0){
+            cy.get("#review").type(review)
+        }
+        cy.get("#button-review").click();
+    }
 }
 export default sauceDemo

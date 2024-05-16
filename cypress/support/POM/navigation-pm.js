@@ -36,6 +36,10 @@ class Navigation
         cy.EqUrl("https://automationexercise.com/products")
         cy.get('.productinfo').eq(0).should("contain.text","Blue Top")
     }
+    nthProductPage(n){
+        cy.ButtonClick('a[href="/product_details/' + n + '"]')
+        cy.EqUrl("https://automationexercise.com/product_details/" + n)
+    }
     checkoutPage(){
         cy.get('a[href="/payment"]').click()
         cy.url().should('eq',"https://automationexercise.com/payment")
