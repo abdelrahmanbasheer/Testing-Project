@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start:ci": "next dev",
-    "signup": "npx cypress run --spec cypress/e2e/SMI-UI-FE/Sign-up.cy.js",
-    "addComSCR": "npx cypress run --spec cypress/e2e/Scripts/script-add-companies.cy.js",
-    "company_E2E": "npx cypress run --spec cypress/e2e/SMI-UI-FE/company-test.cy.js",
+    "signup": "npx cypress run --spec cypress/e2e/SignUp.cy.js",
+    "login": "npx cypress run --spec cypress/e2e/Login.cy.js",
+    "filter": "npx cypress run --spec cypress/e2e/Filter.cy.js",
     "station_E2E": "npx cypress run --spec cypress/e2e/SMI-UI-FE/my-stations.cy.js",
     "API_SMOKE": "npx cypress run --spec cypress/e2e/SMI-BE/API.cy.js"
   },

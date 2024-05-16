@@ -6,28 +6,37 @@ class Navigation
     homePage(){
         cy.visit("https://automationexercise.com")
     }
+    FirstProductPage(){
+        cy.ButtonClick('a[href="/product_details/1"]')
+        cy.EqUrl("https://automationexercise.com/product_details/1")
+    }
     shoppingCartPage(){
         cy.get('a[href="/view_cart"]').eq(0).click();
         cy.EqUrl("https://automationexercise.com/view_cart")
     }
-    firstCheckoutPage(){
-        cy.get('[data-test="checkout"]').click()
-        cy.url().should("eq","https://www.saucedemo.com/checkout-step-one.html")
+    paymentSuccessPage(){
+        cy.ButtonClick('[data-qa="pay-button"]')
+        cy.url().should('contain',"https://automationexercise.com/payment_done")
     }
-    secondCheckoutPage(){
-        cy.get('[data-test="finish"]').click()
-        cy.url().should("eq","https://www.saucedemo.com/checkout-complete.html")
-        cy.get('#root .header_secondary_container').should("contain.text","Checkout: Complete!")
+    ContactUsPage(){
+        cy.visit("https://automationexercise.com/contact_us")
     }
-    backToProductsPage(){
-    cy.get('[data-test="back-to-products"]').click()
-    cy.url().should("eq","https://www.saucedemo.com/inventory.html")
-    cy.get('#inventory_container .inventory_item').eq(0).should('contain.html',"Sauce Labs Backpack");
+    ViewProductsInsideCartPage(){
+        cy.get('u').click()
+        cy.url().should('eq',"https://automationexercise.com/products")
+    }
+    ProductsPage(){
+        cy.ButtonClick('a[href="/products"]')
+        cy.EqUrl("https://automationexercise.com/products")
+        cy.get('.productinfo').eq(0).should("contain.text","Blue Top")
+    }
+    checkoutPage(){
+        cy.get('a[href="/payment"]').click()
+        cy.url().should('eq',"https://automationexercise.com/payment")
     }
     logoutPage(){
-        cy.get("#menu_button_container #react-burger-menu-btn").click()
-        cy.get(".bm-menu #logout_sidebar_link").click()
-        cy.url().should("eq","https://www.saucedemo.com/")
+        cy.get('a[href="/logout"]').click()
+        cy.url().should('eq',"https://automationexercise.com/login")
     }
 }
 export default Navigation
