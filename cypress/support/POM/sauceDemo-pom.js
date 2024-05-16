@@ -61,9 +61,6 @@ class sauceDemo
         cy.EqUrl("https://automationexercise.com/brand_products/" + brand)
     }
     AddingProductToCart(){
-        cy.ButtonClick('a[href="/product_details/1"]')
-        cy.EqUrl("https://automationexercise.com/product_details/1")
-        cy.ProductInfo("Blue Top")
         cy.ButtonClick(':nth-child(5) > .btn')
         cy.ExistBe(".modal-content")
         cy.ButtonClick(".modal-footer > .btn")

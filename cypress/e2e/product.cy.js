@@ -8,12 +8,32 @@ describe('SauceDemo', () => {
   it('[10] clicking on a product and adding it to cart', () => {
     nav.loginPageNav()
     Funct.validLogin()
+    nav.nthProductPage(1);
+    Funct.AddingProductToCart()
+    //could add assertion for dress name
+  });
+  it('[39] clicking on a product and adding it to cart more than once', () => {
+    nav.loginPageNav()
+    Funct.validLogin()
+    nav.nthProductPage(1);
+    Funct.AddingProductToCart()
+    Funct.AddingProductToCart()
+    //could add assertion for dress name
+  });
+  it('[40] adding multiple items to cart at once', () => {
+    nav.loginPageNav()
+    Funct.validLogin()
+    nav.nthProductPage(1);
+    Funct.AddingProductToCart()
+    nav.ProductsPage();
+    nav.nthProductPage(2);
     Funct.AddingProductToCart()
     //could add assertion for dress name
   });
   it('[11] clicking on a product and adding it to cart and checking it in cart and removing it', () => {
     nav.loginPageNav()
     Funct.validLogin()
+    nav.nthProductPage(1);
     Funct.AddingProductToCart()
     nav.shoppingCartPage()
     Funct.RemovingFromCart()
@@ -21,6 +41,7 @@ describe('SauceDemo', () => {
   });
   it('[12] clicking on a product and adding it to cart and proceeding to checkout without logging in', () => {
     nav.homePage()
+    nav.nthProductPage(1);
     Funct.AddingProductToCart()
     nav.shoppingCartPage()
     Funct.CheckoutWithoutLogin()
@@ -29,6 +50,7 @@ describe('SauceDemo', () => {
   it('[13] clicking on a product and adding it to cart and proceeding to checkout while logged in', () => {
     nav.loginPageNav()
     Funct.validLogin()
+    nav.nthProductPage(1);
     Funct.AddingProductToCart()
     nav.shoppingCartPage()
     cy.get("#product-1").should("contain.text","Blue Top")
