@@ -14,8 +14,11 @@
   "author": "Ahmed Taher",
   "license": "ISC",
   "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^20.0.5",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "@cucumber/cucumber": "^10.7.0",
     "cy-verify-downloads": "^0.1.11",
-    "cypress": "^10.8.0",
+    "cypress": "^13.9.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^5.0.8",
     "cypress-multi-reporters": "^1.6.2",
@@ -35,5 +38,8 @@
     "random-name": "^0.1.2",
     "random-sentence": "^1.0.4",
     "xmlhttprequest": "^1.8.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js"
   }
 }
